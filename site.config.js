@@ -1,13 +1,13 @@
 const CONFIG = {
   // profile setting (required)
   profile: {
-    name: "morethanmin",
+    name: "Anagh Kanungo",
     image: "/avatar.svg", // If you want to create your own notion avatar, check out https://notion-avatar.vercel.app
-    role: "frontend developer",
-    bio: "I develop everything using node.",
-    email: "morethanmin.dev@gmail.com",
-    linkedin: "morethanmin",
-    github: "morethanmin",
+    role: "developer",
+    bio: "I develop everything.",
+    email: "anaghkanungo7[at]gmail[dot]com",
+    linkedin: "anaghkanungo",
+    github: "anaghkanungo7",
     instagram: "",
   },
   projects: [
@@ -18,8 +18,8 @@ const CONFIG = {
   ],
   // blog setting (required)
   blog: {
-    title: "morethan-log",
-    description: "welcome to morethan-log!",
+    title: "Thoughts and Musings",
+    description: "A blog about my thoughts and musings.",
   },
 
   // CONFIG configration (required)
