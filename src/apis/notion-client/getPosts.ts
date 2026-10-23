@@ -1,6 +1,6 @@
 import { CONFIG } from "site.config"
 import { NotionAPI } from "notion-client"
-import { idToUuid } from "notion-utils"
+import { getBlockValue, idToUuid } from "notion-utils"
 
 import getAllPageIds from "src/libs/utils/notion/getAllPageIds"
 import getPageProperties from "src/libs/utils/notion/getPageProperties"
@@ -17,11 +17,11 @@ export const getPosts = async () => {
 
   const response = await api.getPage(id)
   id = idToUuid(id)
-  const collection = Object.values(response.collection)[0]?.value
+  const collection = getBlockValue(Object.values(response.collection)[0])
   const block = response.block
-  const schema = collection?.schema
+  const schema = collection?.schema ?? {}
 
-  const rawMetadata = block[id].value
+  const rawMetadata = getBlockValue(block[id])
 
   // Check Type
   if (
@@ -38,10 +38,10 @@ export const getPosts = async () => {
       const properties = (await getPageProperties(id, block, schema)) || null
       // Add fullwidth, createdtime to properties
       properties.createdTime = new Date(
-        block[id].value?.created_time
+        getBlockValue(block[id])?.created_time ?? 0
       ).toString()
       properties.fullWidth =
-        (block[id].value?.format as any)?.page_full_width ?? false
+        getBlockValue(block[id])?.format?.page_full_width ?? false
 
       data.push(properties)
     }
